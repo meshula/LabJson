@@ -17,4 +17,6 @@
 *.xcuserstate
 
 obj/
-LabJson.xcodeproj/xcuserdata/
+xcuserdata/
+
+
