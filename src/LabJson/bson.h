@@ -43,7 +43,7 @@
 #define MONGO_EXTERN_C_END
 #endif
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(_MSC_VER)
 #define MONGO_HAVE_STDINT
 #endif
 

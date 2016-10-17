@@ -3,7 +3,7 @@ workspace "LabJson"
 configurations { "Debug", "Release" }
 architecture "x86_64"
 
-objdir ("../build/obj/%{cfg.longname}/%{prj.name}")
+--objdir ("../build/obj/%{cfg.longname}/%{prj.name}")
 
 platforms {
         "linux",
@@ -38,10 +38,10 @@ filter {}
 
 project "LabJson"
     kind "StaticLib"
-    language "C++"    
+    language "C++"
 
-    targetdir ("../local/lib/%{cfg.longname}")
-    
-    includedirs { "src", "../LabText/src" } 
-    files { "src/**.h", "src/**.cpp", "src/**.c" }        
+    --targetdir ("../local/lib/%{cfg.longname}")
+
+    includedirs { "src", "../LabText/src" }
+    files { "src/**.h", "src/**.cpp", "src/**.c" }
     excludes { }
