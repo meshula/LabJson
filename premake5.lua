@@ -1,22 +1,47 @@
+workspace "LabJson"
+
+configurations { "Debug", "Release" }
+architecture "x86_64"
+
+objdir ("../build/obj/%{cfg.longname}/%{prj.name}")
+
+platforms {
+        "linux",
+        "macosx",
+        "windows"
+    }
+
+filter "system:linux"
+    system "linux"
+    defines { "PLATFORM_LINUX" }
+    buildoptions { "-std=c++11" }
+
+filter "system:windows"
+    system "windows"
+    defines { "PLATFORM_WINDOWS" }
+
+filter "system:macosx"
+    system "macosx"
+    defines { "PLATFORM_DARWIN" }
+
+filter {}
+
+filter "configurations:Debug"
+    defines { "DEBUG" }
+    symbols "On"
+
+filter "configurations:Release"
+    defines { "NDEBUG" }
+    optimize "On"
+
+filter {}
 
 project "LabJson"
     kind "StaticLib"
     language "C++"    
-    platforms { "x32", "x64" }
+
+    targetdir ("../local/lib/%{cfg.longname}")
     
     includedirs { "src", "../LabText/src" } 
     files { "src/**.h", "src/**.cpp", "src/**.c" }        
     excludes { }
-
-    configuration "Debug"
-        targetdir "build/Debug"
-        defines {  "DEBUG", "__MACOSX_CORE__", "OSX" }
-        flags { "Symbols" }
-
-    configuration "Release"
-        targetdir "build/Release"
-        defines { "NDEBUG", "__MACOSX_CORE__", "OSX" }
-        flags { "Optimize" } 
-
-    configuration "macosx"
-        buildoptions { "-std=c++11", "-stdlib=libc++" }
